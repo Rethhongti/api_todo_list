@@ -23,7 +23,7 @@ class TaskController extends Controller
         // $task = Task::orderBy('created_at','desc')->get();
         $task = DB::select('select * from tasks ORDER BY created_at DESC');
 
-        return TaskResource::collection($task);
+        return $this->successResponse(TaskResource::collection($task));
         // return $this->successResponse($task);
     }
 
