@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
-    // use ResponseTrait;
+    use ResponseTrait;
     /**
      * Display a listing of the resource.
      *
