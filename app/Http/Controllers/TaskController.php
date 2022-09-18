@@ -20,8 +20,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // $task = Task::orderBy('created_at','desc')->get();
-        $task = DB::select('select * from tasks ORDER BY created_at DESC');
+        $task = Task::orderBy('created_at','desc')->get();
 
         return $this->successResponse(TaskResource::collection($task));
         // return $this->successResponse($task);
