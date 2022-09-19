@@ -35,7 +35,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $validator = [
-            'todo' => 'string|required',
+            'todo' => 'string|required|unique:tasks,todo',
             'isCompleted' => 'required'
         ];
 
@@ -87,7 +87,7 @@ class TaskController extends Controller
 
     public function search($keyword){
         if($keyword != null){
-            $searchTask = Task::query()->where('todo','LIKE',"{$keyword}%")->get();
+            $searchTask = Task::query()->where('todo','LIKE',"{$keyword}")->get();
 
             return $this->successResponse(TaskResource::collection($searchTask));
         }
