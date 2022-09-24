@@ -11,10 +11,10 @@ class Task extends Model
     use HasFactory;
 
     public function getIsCompletedToBoolAttribute(){
-        if($this->isCompleted == 1){
+        if($this->isCompleted == 1 || $this->isCompleted == "1"){
             return true;
         }
-        if($this->isCompleted == 0){
+        if($this->isCompleted == 0 || $this->isCompleted == "0"){
             return false;
         }
     }
