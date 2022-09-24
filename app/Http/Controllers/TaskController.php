@@ -88,7 +88,7 @@ class TaskController extends Controller
 
         $result = Task::orderBy('created_at','desc')->get();
 
-        return $this->successResponse($task);
+        return $this->successResponse($result);
     }
 
     public function search($keyword){
