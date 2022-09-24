@@ -91,8 +91,8 @@ class TaskController extends Controller
         return $this->successResponse($result);
     }
 
-    public function search($keyword){
-
+    public function show($keyword = null){
+        // dd($keyword);
         if($keyword != null || $keyword != ''){
             $searchTask = Task::query()->where('todo','LIKE',"{$keyword}%")->get();
 
