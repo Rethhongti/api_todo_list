@@ -52,7 +52,7 @@ class TaskController extends Controller
 
         $task = Task::orderBy('created_at','desc')->get();
 
-        return $this->successResponse($task);
+        return $this->successResponse(TaskResource::collection($task));
     }
 
     public function update(Request $request)
@@ -65,7 +65,7 @@ class TaskController extends Controller
 
         $result = Task::orderBy('created_at','desc')->get();
         
-        return $this->successResponse($result);
+        return $this->successResponse(TaskResource::collection($result));
     }
 
     /**
@@ -81,7 +81,7 @@ class TaskController extends Controller
 
         $result = Task::orderBy('created_at','desc')->get();
 
-        return $this->successResponse($result);
+        return $this->successResponse(TaskResource::collection($result));
     }
 
     public function show($keyword = null){
