@@ -50,7 +50,9 @@ class TaskController extends Controller
             'isCompleted' => $request->isCompleted
         ]);
 
-        return $this->successResponse("Created Successfully");
+        $task = Task::orderBy('created_at','desc')->get();
+
+        return $this->successResponse($task);
     }
 
     /**
@@ -67,8 +69,10 @@ class TaskController extends Controller
         $task->todo = $request->task;
         $task->isCompleted = $request->isCompleted;
         $task->save();
+
+        $result = Task::orderBy('created_at','desc')->get();
         
-        return $this->successResponse("Update Successfully");
+        return $this->successResponse($result);
     }
 
     /**
@@ -82,7 +86,9 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
-        return $this->successResponse("Delete Successfully");
+        $result = Task::orderBy('created_at','desc')->get();
+
+        return $this->successResponse($task);
     }
 
     public function search($keyword){
