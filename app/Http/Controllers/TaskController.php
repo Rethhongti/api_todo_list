@@ -55,16 +55,9 @@ class TaskController extends Controller
         return $this->successResponse($task);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $task = Task::find($id);
+        $task = Task::find($request->id);
 
         $task->todo = $request->task;
         $task->isCompleted = $request->isCompleted;
