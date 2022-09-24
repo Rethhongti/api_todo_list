@@ -92,10 +92,14 @@ class TaskController extends Controller
     }
 
     public function search($keyword){
-        if($keyword != null){
+
+        if($keyword != null || $keyword != ''){
             $searchTask = Task::query()->where('todo','LIKE',"{$keyword}%")->get();
 
             return $this->successResponse(TaskResource::collection($searchTask));
+        }else{
+            $result = Task::orderBy('created_at','desc')->get();
+            return $this->successResponse(TaskResource::collection($result));
         }
         
         return $this->errorResponse(null);
