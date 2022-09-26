@@ -57,6 +57,17 @@ class TaskController extends Controller
 
     public function update(Request $request)
     {
+        $validator = [
+            'task' => 'string|required|unique:tasks,todo',
+            'isCompleted' => 'required'
+        ];
+
+        $validate = Validator::make($request->all(), $validator);
+
+        if ($validate->fails()) {
+            return $this->errorResponse(null);
+        }
+
         $task = Task::find($request->id);
 
         $task->todo = $request->task;
