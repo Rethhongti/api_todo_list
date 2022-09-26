@@ -79,6 +79,28 @@ class TaskController extends Controller
         return $this->successResponse(TaskResource::collection($result));
     }
 
+    public function markAsComplete(Request $request)
+    {
+        $validator = [
+            'isCompleted' => 'required'
+        ];
+
+        $validate = Validator::make($request->all(), $validator);
+
+        if ($validate->fails()) {
+            return $this->errorResponse(null);
+        }
+
+        $task = Task::find($request->id);
+
+        $task->isCompleted = $request->isCompleted;
+        $task->save();
+
+        $result = Task::orderBy('created_at','desc')->get();
+        
+        return $this->successResponse(TaskResource::collection($result));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

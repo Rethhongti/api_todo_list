@@ -24,5 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/allTodo',[TaskController::class, 'index']);
 Route::post('/addTodo',[TaskController::class, 'store']);
 Route::post('/updateTodo',[TaskController::class, 'update']);
+Route::post('/changeTaskStatus',[TaskController::class, 'markAsComplete']);
 Route::get('/searchTodo/{keyword?}',[TaskController::class, 'show']);
 Route::delete('/deleteTodo/{id}',[TaskController::class, 'destroy']);
