@@ -20,7 +20,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $task = Task::orderBy('created_at','desc')->get();
+        $task = Task::orderBy('created_at','asc')->get();
 
         return $this->successResponse(TaskResource::collection($task));
         // return $this->successResponse($task);
@@ -50,7 +50,7 @@ class TaskController extends Controller
             'isCompleted' => $request->isCompleted
         ]);
 
-        $task = Task::orderBy('created_at','desc')->get();
+        $task = Task::orderBy('created_at','asc')->get();
 
         return $this->successResponse(TaskResource::collection($task));
     }
@@ -74,7 +74,7 @@ class TaskController extends Controller
         $task->isCompleted = $request->isCompleted;
         $task->save();
 
-        $result = Task::orderBy('created_at','desc')->get();
+        $result = Task::orderBy('created_at','asc')->get();
         
         return $this->successResponse(TaskResource::collection($result));
     }
@@ -96,7 +96,7 @@ class TaskController extends Controller
         $task->isCompleted = $request->isCompleted;
         $task->save();
 
-        $result = Task::orderBy('created_at','desc')->get();
+        $result = Task::orderBy('created_at','asc')->get();
         
         return $this->successResponse(TaskResource::collection($result));
     }
@@ -112,7 +112,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
-        $result = Task::orderBy('created_at','desc')->get();
+        $result = Task::orderBy('created_at','asc')->get();
 
         return $this->successResponse(TaskResource::collection($result));
     }
@@ -124,7 +124,7 @@ class TaskController extends Controller
 
             return $this->successResponse(TaskResource::collection($searchTask));
         }else{
-            $result = Task::orderBy('created_at','desc')->get();
+            $result = Task::orderBy('created_at','asc')->get();
             return $this->successResponse(TaskResource::collection($result));
         }
         
